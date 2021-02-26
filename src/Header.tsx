@@ -12,8 +12,8 @@ interface HeaderProps {}
 const useStyles = makeStyles({
   background: {
     minHeight: 50,
-    backgroundColor: colors.indigo[300],
     padding: 16,
+    backgroundColor: colors.blue[500],
   },
   pageTitle: {
     color: "#FFFFFF",
@@ -26,7 +26,7 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   return (
     <Box className={styles.background}>
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <Typography variant="h1" className={styles.pageTitle}>
           Math Embed
         </Typography>

@@ -24,10 +24,10 @@ const Hero: React.FC<HeroProps> = (props) => {
   return (
     <Box className={styles.wrapper}>
       <Typography className={styles.bigText}>
-        A simple web app makes your TeX math embeddable.
+        Make your TeX math simply embeddable.
       </Typography>
       <Typography className={styles.smallText}>
-        Input math equations using Text and then simply embed it wherever you
+        Input math equations using LaTeX and then simply embed it wherever you
         want.
       </Typography>
     </Box>

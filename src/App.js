@@ -1,12 +1,12 @@
-import { Box, Container, Link, makeStyles } from "@material-ui/core";
+import { Box, colors, Container, Link, makeStyles } from "@material-ui/core";
 import { useState } from "react";
 import "./App.css";
 import FullPage from "./FullPage";
 import Header from "./Header";
+import { getEquation } from "./helpers/firestore";
 import Hero from "./Hero";
 import MathInput from "./MathInput";
 import MathOutput from "./MathOutput";
-import { getEquation } from './helpers/firestore';
 
 const useStyles = makeStyles({
   content: {
@@ -18,13 +18,13 @@ const useStyles = makeStyles({
   },
   support: {
     fontFamily: "Poppins",
+    color: colors.blue[500],
   },
 });
 
 const getEquationLocal = () => {
-  getEquation('xphHHPVevpAQ9ur0ONnu')
-    .then(console.log);
-}
+  getEquation("xphHHPVevpAQ9ur0ONnu").then(console.log);
+};
 
 function App() {
   const styles = useStyles();
@@ -35,7 +35,7 @@ function App() {
   return (
     <FullPage>
       <Header></Header>
-      <Container maxWidth="lg" className={styles.content}>
+      <Container maxWidth="md" className={styles.content}>
         <Box display="flex" flexDirection="column" flex={1}>
           <Hero></Hero>
           <MathInput value={mathRaw} onChange={setMathRaw}></MathInput>
@@ -48,7 +48,7 @@ function App() {
             target="_blank"
             className={styles.support}
           >
-            Supported LaTeX commands
+            Supported KaTeX commands
           </Link>
         </Box>
       </Container>
