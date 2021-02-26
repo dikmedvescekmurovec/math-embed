@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container, makeStyles } from "@material-ui/core";
+import { useState } from "react";
+import "./App.css";
+import FullPage from "./FullPage";
+import Header from "./Header";
+import Hero from "./Hero";
+import MathInput from "./MathInput";
+import MathOutput from "./MathOutput";
+
+const useStyles = makeStyles({
+  content: {
+    display: "flex",
+    flex: 1,
+    flexDirection: "column",
+    height: "100%",
+  },
+});
 
 function App() {
+  const styles = useStyles();
+  const [mathRaw, setMathRaw] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FullPage>
+      <Header></Header>
+      <Container maxWidth="lg" className={styles.content}>
+        <Hero></Hero>
+        <MathInput value={mathRaw} onChange={setMathRaw}></MathInput>
+        <MathOutput raw={mathRaw}></MathOutput>
+      </Container>
+    </FullPage>
   );
 }
 
