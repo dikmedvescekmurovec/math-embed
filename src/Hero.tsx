@@ -9,6 +9,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     height: 200,
+    marginTop: 16,
   },
   bigText: {
     fontSize: 24,
@@ -23,12 +24,11 @@ const Hero: React.FC<HeroProps> = (props) => {
   return (
     <Box className={styles.wrapper}>
       <Typography className={styles.bigText}>
-        A simple web app that transforms your TeX math into an embeddable
-        picture.
+        A simple web app makes your TeX math embeddable.
       </Typography>
       <Typography className={styles.smallText}>
-        Use TeX format to generate your math equations and then simply embed it
-        wherever you want.
+        Input math equations using Text and then simply embed it wherever you
+        want.
       </Typography>
     </Box>
   );
