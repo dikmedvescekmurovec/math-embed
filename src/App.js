@@ -6,6 +6,7 @@ import Header from "./Header";
 import Hero from "./Hero";
 import MathInput from "./MathInput";
 import MathOutput from "./MathOutput";
+import { getEquation } from './helpers/firestore';
 
 const useStyles = makeStyles({
   content: {
@@ -16,9 +17,17 @@ const useStyles = makeStyles({
   },
 });
 
+const getEquationLocal = () => {
+  getEquation('xphHHPVevpAQ9ur0ONnu')
+    .then(console.log);
+}
+
 function App() {
   const styles = useStyles();
   const [mathRaw, setMathRaw] = useState("");
+
+  getEquationLocal();
+
   return (
     <FullPage>
       <Header></Header>
