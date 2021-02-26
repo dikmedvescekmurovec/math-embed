@@ -11,6 +11,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
+    marginTop: 16,
   },
   mathInput: {
     width: "100%",
@@ -19,6 +20,9 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "flex-end",
     cursor: "pointer",
+  },
+  randomEquationText: {
+    fontFamily: "Poppins",
   },
 });
 
@@ -55,7 +59,10 @@ const MathInput: React.FC<MathInputProps> = (props) => {
         onChange={(e) => props.onChange(e.target.value)}
       ></TextField>
       <Box className={styles.randomEquationButton}>
-        <Link onClick={() => props.onChange(getRandomEquation())}>
+        <Link
+          onClick={() => props.onChange(getRandomEquation())}
+          className={styles.randomEquationText}
+        >
           Try out a random equation.
         </Link>
       </Box>

@@ -1,4 +1,4 @@
-import { Box, Button, Link, makeStyles, Typography } from "@material-ui/core";
+import { Box, Button, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import { Tex } from "react-tex";
 
@@ -12,9 +12,13 @@ const useStyles = makeStyles({
   },
   label: {
     fontWeight: 600,
+    fontFamily: "Poppins",
   },
   equationWrapper: {
     padding: 16,
+  },
+  button: {
+    fontFamily: "Poppins",
   },
 });
 
@@ -27,12 +31,8 @@ const MathOutput: React.FC<MathOutputProps> = (props) => {
       <Box className={styles.equationWrapper}>
         <Tex texContent={props.raw} classNamem={styles.label}></Tex>
       </Box>
-      <Button>Embed JS</Button>
-      <Button>Embed HTML</Button>
-      <Box>
-        <Link href="https://katex.org/docs/supported.html" target="_blank">
-          Supported LaTeX commands
-        </Link>
+      <Box display="flex" justifyContent="center">
+        <Button className={styles.button}>Get embeddable link</Button>
       </Box>
     </Box>
   );
