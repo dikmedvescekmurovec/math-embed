@@ -13,6 +13,30 @@ const db = admin.firestore();
 // Automatically allow cross-origin requests
 app.use(cors({ origin: true }));
 
+app.get('/oembed', (req:any, res:any) => {
+  const url = req.query.url;
+
+  const maxWidth = req.query.maxwidth ?? 384;
+  const maxHeight = req.query.maxheight ?? 64;
+
+  const width = maxWidth < 384 ? maxWidth : 384;
+  const height = maxHeight < 64 ? maxHeight : 64;
+
+  const oembed = {
+    provider_url: 'https://mathembed.online/',
+    version: '1.0',
+    provider_name: 'Math Embed',
+    height: 64,
+    width: 384,
+    type: 'rich',
+    html: `<iframe src="${url}" frameborder="0" width="${width}" height="${height}"></iframe>`,
+  };
+
+  res.set('Cache-Control', 'public, max-age=31536000, s-maxage=31536000');
+
+  res.json(oembed);
+});
+
 app.get('/embed/:id', async (req:any, res:any) => {
   const id = req.params.id;
   console.log(id);
@@ -28,6 +52,8 @@ app.get('/embed/:id', async (req:any, res:any) => {
     throwOnError: false
   });
 
+  res.set('Cache-Control', 'public, max-age=31536000, s-maxage=31536000');
+  // TODO: Add sponsorship
   res.send(`
   <!doctype html>
     <head>
