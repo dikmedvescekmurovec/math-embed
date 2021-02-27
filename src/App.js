@@ -15,7 +15,7 @@ import Hero from "./Hero";
 import MathInput from "./MathInput";
 import MathOutput from "./MathOutput";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   content: {
     display: "flex",
     flex: 1,
@@ -27,7 +27,15 @@ const useStyles = makeStyles({
     fontFamily: "Poppins",
     color: "#329894",
   },
-});
+  equationInputOutput: {
+    [theme.breakpoints.down("xs")]: {
+      height: "100%",
+      display: "flex",
+      justifyContent: "space-around",
+      flexDirection: "column",
+    },
+  },
+}));
 
 const getEquationLocal = () => {
   getEquation("xphHHPVevpAQ9ur0ONnu").then(console.log);
@@ -54,8 +62,10 @@ function App() {
         <Container maxWidth="md" className={styles.content}>
           <Box display="flex" flexDirection="column" flex={1}>
             <Hero></Hero>
-            <MathInput value={mathRaw} onChange={setMathRaw}></MathInput>
-            <MathOutput raw={mathRaw}></MathOutput>
+            <Box className={styles.equationInputOutput}>
+              <MathInput value={mathRaw} onChange={setMathRaw}></MathInput>
+              <MathOutput raw={mathRaw}></MathOutput>
+            </Box>
           </Box>
           <Box display="flex" justifyContent="center" padding={1}>
             <Link

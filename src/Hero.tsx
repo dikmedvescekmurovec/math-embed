@@ -2,13 +2,19 @@ import { Box, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 
 interface HeroProps {}
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    height: 200,
+    [theme.breakpoints.up("sm")]: {
+      height: 200,
+    },
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: 16,
+      paddingBottom: 16,
+    },
     marginTop: 16,
   },
   bigText: {
@@ -18,16 +24,16 @@ const useStyles = makeStyles({
   smallText: {
     fontFamily: "Poppins",
   },
-});
+}));
 const Hero: React.FC<HeroProps> = (props) => {
   const styles = useStyles();
   return (
     <Box className={styles.wrapper}>
       <Typography className={styles.bigText}>
-        Make your TeX math simply embeddable.
+        Make your LaTeX math simply embeddable.
       </Typography>
       <Typography className={styles.smallText}>
-        Input math equations using LaTeX and then simply embed it wherever you
+        Input math equations using LaTeX and then simply embed them wherever you
         want.
       </Typography>
     </Box>
