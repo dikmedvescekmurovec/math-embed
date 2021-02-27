@@ -32,9 +32,9 @@ const useStyles = makeStyles({
   button: {
     fontFamily: "Poppins",
     fontSize: 16,
-    backgroundColor: colors.blue[500],
+    backgroundColor: "#329894",
     "&:hover, &:focus": {
-      backgroundColor: colors.blue[500],
+      backgroundColor: "#329894",
     },
   },
   iconInButton: {

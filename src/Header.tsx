@@ -1,10 +1,4 @@
-import {
-  Box,
-  colors,
-  Container,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
+import { Box, Container, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 
 interface HeaderProps {}
@@ -13,7 +7,7 @@ const useStyles = makeStyles({
   background: {
     minHeight: 50,
     padding: 16,
-    backgroundColor: colors.blue[500],
+    backgroundColor: "#329894",
   },
   pageTitle: {
     color: "#FFFFFF",

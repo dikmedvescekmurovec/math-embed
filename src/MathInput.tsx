@@ -1,4 +1,4 @@
-import { Box, colors, Link, makeStyles, TextField } from "@material-ui/core";
+import { Box, Link, makeStyles, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 
 interface MathInputProps {
@@ -15,6 +15,10 @@ const useStyles = makeStyles({
   },
   mathInput: {
     width: "100%",
+    borderColor: "#329894",
+    "&:hover, &:focus": {
+      borderColor: "#329894",
+    },
   },
   randomEquationButton: {
     display: "flex",
@@ -23,7 +27,7 @@ const useStyles = makeStyles({
   },
   randomEquationText: {
     fontFamily: "Poppins",
-    color: colors.blue[500],
+    color: "#329894",
   },
 });
 

@@ -1,4 +1,11 @@
-import { Box, colors, Container, Link, makeStyles } from "@material-ui/core";
+import {
+  Box,
+  Container,
+  createMuiTheme,
+  Link,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core";
 import { useState } from "react";
 import "./App.css";
 import FullPage from "./FullPage";
@@ -18,7 +25,7 @@ const useStyles = makeStyles({
   },
   support: {
     fontFamily: "Poppins",
-    color: colors.blue[500],
+    color: "#329894",
   },
 });
 
@@ -32,26 +39,36 @@ function App() {
 
   getEquationLocal();
 
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#329894",
+      },
+    },
+  });
+
   return (
     <FullPage>
-      <Header></Header>
-      <Container maxWidth="md" className={styles.content}>
-        <Box display="flex" flexDirection="column" flex={1}>
-          <Hero></Hero>
-          <MathInput value={mathRaw} onChange={setMathRaw}></MathInput>
-          <MathOutput raw={mathRaw}></MathOutput>
-        </Box>
-        <Box display="flex" justifyContent="center" padding={1}>
-          <Link
-            textAlign="center"
-            href="https://katex.org/docs/supported.html"
-            target="_blank"
-            className={styles.support}
-          >
-            Supported KaTeX commands
-          </Link>
-        </Box>
-      </Container>
+      <ThemeProvider theme={theme}>
+        <Header></Header>
+        <Container maxWidth="md" className={styles.content}>
+          <Box display="flex" flexDirection="column" flex={1}>
+            <Hero></Hero>
+            <MathInput value={mathRaw} onChange={setMathRaw}></MathInput>
+            <MathOutput raw={mathRaw}></MathOutput>
+          </Box>
+          <Box display="flex" justifyContent="center" padding={1}>
+            <Link
+              textAlign="center"
+              href="https://katex.org/docs/supported.html"
+              target="_blank"
+              className={styles.support}
+            >
+              Supported KaTeX commands
+            </Link>
+          </Box>
+        </Container>
+      </ThemeProvider>
     </FullPage>
   );
 }
