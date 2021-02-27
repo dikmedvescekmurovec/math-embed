@@ -18,6 +18,14 @@
     ],
     "rewrites": [
       {
+        "source": "/embed/**",
+        "function": "app" 
+      },
+      {
+        "source": "/oembed",
+        "function": "app" 
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
