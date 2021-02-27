@@ -24,3 +24,6 @@ yarn-error.log*
 
 # VS Code settings
 .vscode
+
+# Emulators
+/emulators
