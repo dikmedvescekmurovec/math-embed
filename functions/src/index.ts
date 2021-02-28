@@ -17,16 +17,16 @@ app.get('/oembed', (req:any, res:any) => {
   const url = req.query.url;
 
   const maxWidth = req.query.maxwidth ?? 384;
-  const maxHeight = req.query.maxheight ?? 64;
+  const maxHeight = req.query.maxheight ?? 96;
 
   const width = maxWidth < 384 ? maxWidth : 384;
-  const height = maxHeight < 64 ? maxHeight : 64;
+  const height = maxHeight < 96 ? maxHeight : 96;
 
   const oembed = {
     provider_url: 'https://mathembed.online/',
     version: '1.0',
     provider_name: 'Math Embed',
-    height: 64,
+    height: 96,
     width: 384,
     type: 'rich',
     html: `<iframe src="${url}" frameborder="0" width="${width}" height="${height}"></iframe>`,
@@ -53,7 +53,6 @@ app.get('/embed/:id', async (req:any, res:any) => {
   });
 
   res.set('Cache-Control', 'public, max-age=31536000, s-maxage=31536000');
-  // TODO: Add sponsorship
   res.send(`
   <!doctype html>
     <head>
@@ -76,10 +75,19 @@ app.get('/embed/:id', async (req:any, res:any) => {
           align-items: center;
           justify-content: center;
         }
+        a {
+          font-size: 12px;
+          color: #329894;
+          font-family: Roboto, sans-serif;
+          position: absolute;
+          bottom: 0;
+          text-decoration: none;
+        }
       </style>
     </head>
     <body>
       ${html}
+      <a href="https://mathembed.online">Powered by Math Embed</a>
     </body>
   </html>`);
 });
