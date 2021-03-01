@@ -37,15 +37,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const getEquationLocal = () => {
-  getEquation("xphHHPVevpAQ9ur0ONnu").then(console.log);
-};
-
 function App() {
   const styles = useStyles();
   const [mathRaw, setMathRaw] = useState("");
-
-  getEquationLocal();
 
   const theme = createMuiTheme({
     palette: {
