@@ -6,8 +6,9 @@ import {
   makeStyles,
   ThemeProvider,
 } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import initFirebase from "./firebase";
 import FullPage from "./FullPage";
 import Header from "./Header";
 import Hero from "./Hero";
@@ -47,6 +48,10 @@ const theme = createMuiTheme({
 function App() {
   const styles = useStyles();
   const [mathRaw, setMathRaw] = useState("");
+
+  useEffect(() => {
+    initFirebase();
+  }, []);
 
   return (
     <FullPage>

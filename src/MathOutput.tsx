@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Tex } from "react-tex";
+import { saveEquation } from "./helpers/firestore";
 interface MathOutputProps {
   raw: string;
 }
@@ -48,7 +49,13 @@ const MathOutput: React.FC<MathOutputProps> = (props) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
-    setOpen(true);
+    saveEquation(props.raw).then((id: string) => {
+      // TODO: Implement copy to clipboard
+      // TODO: Set rules when this function can be called
+      setOpen(true);
+      console.log(`https://mathembed.online/embed/${id}`);
+    })
+    .catch(() => {/* TODO: Inform user of user */})
   };
 
   const handleClose = (
