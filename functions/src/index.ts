@@ -1,3 +1,5 @@
+import { HEIGHT, WIDTH } from "./constants";
+
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const express = require('express');
@@ -16,18 +18,18 @@ app.use(cors({ origin: true }));
 app.get('/oembed', (req:any, res:any) => {
   const url = req.query.url;
 
-  const maxWidth = req.query.maxwidth ?? 384;
-  const maxHeight = req.query.maxheight ?? 96;
+  const maxWidth = req.query.maxwidth ?? WIDTH;
+  const maxHeight = req.query.maxheight ?? HEIGHT;
 
-  const width = maxWidth < 384 ? maxWidth : 384;
-  const height = maxHeight < 96 ? maxHeight : 96;
+  const width = maxWidth < WIDTH ? maxWidth : WIDTH;
+  const height = maxHeight < HEIGHT ? maxHeight : HEIGHT;
 
   const oembed = {
     provider_url: 'https://mathembed.online/',
     version: '1.0',
     provider_name: 'Math Embed',
-    height: 96,
-    width: 384,
+    height,
+    width,
     type: 'rich',
     html: `<iframe src="${url}" frameborder="0" width="${width}" height="${height}"></iframe>`,
   };
@@ -62,7 +64,7 @@ app.get('/embed/:id', async (req:any, res:any) => {
         title="Math Embed Equation" />
       <title>Math Embed Equation</title>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css" 
-        integrity="sha384-qCEsSYDSH0x5I45nNW4oXemORUZnYFtPy/FqB/OjqxabTMW5HVaaH9USK4fN3goV"
+        integrity="sha420-qCEsSYDSH0x5I45nNW4oXemORUZnYFtPy/FqB/OjqxabTMW5HVaaH9USK4fN3goV"
         crossorigin="anonymous">
       <style>
         html {overflow: hidden;}
