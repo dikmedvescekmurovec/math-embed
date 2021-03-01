@@ -116,7 +116,7 @@ const MathOutput: React.FC<MathOutputProps> = (props) => {
             horizontal: "center",
           }}
           open={showSnackbar}
-          autoHideDuration={2000}
+          autoHideDuration={5000}
           onClose={handleSnackbarClose}
           message={snackbarTitle}
         />
