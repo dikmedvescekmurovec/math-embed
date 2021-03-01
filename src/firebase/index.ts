@@ -29,8 +29,8 @@ export default function initFirebase() {
     // Check that `window` is in scope for the analytics module!
     if (typeof window !== "undefined") {
       if ("measurementId" in firebaseConfig) {
-        firebase.analytics();
-        firebase.performance();
+        // firebase.analytics();
+        // firebase.performance();
       }
     }
   }
