@@ -8,9 +8,11 @@ import {
   Snackbar,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+import copy from "copy-to-clipboard";
+import React, { useState } from "react";
 import { Tex } from "react-tex";
 import { saveEquation } from "./helpers/firestore";
+
 interface MathOutputProps {
   raw: string;
 }
@@ -46,27 +48,39 @@ const useStyles = makeStyles({
 
 const MathOutput: React.FC<MathOutputProps> = (props) => {
   const styles = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [snackbarTitle, setSnackbarTitle] = useState(
+    "Link copied to clipboard."
+  );
+  const [didCopy, setDidCopy] = useState(false);
+  const [embedLink, setEmbedLink] = useState("");
 
-  const handleClick = () => {
-    saveEquation(props.raw).then((id: string) => {
-      // TODO: Implement copy to clipboard
-      // TODO: Set rules when this function can be called
-      setOpen(true);
-      console.log(`https://mathembed.online/embed/${id}`);
-    })
-    .catch(() => {/* TODO: Inform user of user */})
+  const copyToClipboard = () => {
+    saveEquation(props.raw)
+      .then((id: string) => {
+        setEmbedLink(`https://mathembed.online/embed/${id}`);
+        const copySuccessful = copy(`https://mathembed.online/embed/${id}`);
+        if (!copySuccessful) {
+          setSnackbarTitle("Unable to create embeddable link");
+        }
+        setDidCopy(copySuccessful);
+        setShowSnackbar(true);
+      })
+      .catch(() => {
+        setSnackbarTitle("Unable to create embeddable link");
+        setShowSnackbar(true);
+      });
   };
 
-  const handleClose = (
+  const handleSnackbarClose = (
     event: React.SyntheticEvent | React.MouseEvent,
     reason?: string
   ) => {
     if (reason === "clickaway") {
       return;
     }
-
-    setOpen(false);
+    setSnackbarTitle("Link copied to clipboard.");
+    setShowSnackbar(false);
   };
 
   return (
@@ -80,27 +94,31 @@ const MathOutput: React.FC<MathOutputProps> = (props) => {
         <Tex texContent={props.raw || "your\\times equation = here"}></Tex>
       </Box>
       <Box display="flex" justifyContent="center">
-        <Button
-          className={styles.button}
-          variant="contained"
-          color="primary"
-          onClick={handleClick}
-        >
-          <FontAwesomeIcon
-            icon={faClipboard}
-            className={`${styles.iconInButton}`}
-          ></FontAwesomeIcon>
-          Get embeddable link
-        </Button>
+        <Box>
+          <Button
+            className={styles.button}
+            variant="contained"
+            color="primary"
+            onClick={copyToClipboard}
+            disabled={props.raw.length === 0}
+          >
+            <FontAwesomeIcon
+              icon={faClipboard}
+              className={`${styles.iconInButton}`}
+            ></FontAwesomeIcon>
+            Get embeddable link
+          </Button>
+          {embedLink && !didCopy && <Typography> {embedLink} </Typography>}
+        </Box>
         <Snackbar
           anchorOrigin={{
             vertical: "bottom",
             horizontal: "center",
           }}
-          open={open}
+          open={showSnackbar}
           autoHideDuration={2000}
-          onClose={handleClose}
-          message="Link copied to clipboard."
+          onClose={handleSnackbarClose}
+          message={snackbarTitle}
         />
       </Box>
     </Box>
