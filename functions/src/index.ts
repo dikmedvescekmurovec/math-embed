@@ -12,11 +12,19 @@ admin.initializeApp();
 
 const db = admin.firestore();
 
+const isLocal = process.env.FUNCTIONS_EMULATOR === 'true';
+const host = isLocal ? 'http://localhost:5000' : 'https://mathembed.online';
+
 // Automatically allow cross-origin requests
 app.use(cors({ origin: true }));
 
 app.get('/oembed', (req:any, res:any) => {
   const url = req.query.url;
+
+  const regex = new RegExp(`^(${host}/embed/)([0-9a-zA-Z]*)$`);
+  if (!regex.test(url)) {
+    return res.status(400).send('The given URL looks malformed.')
+  }
 
   const maxWidth = req.query.maxwidth ?? WIDTH;
   const maxHeight = req.query.maxheight ?? HEIGHT;
