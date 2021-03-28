@@ -109,7 +109,7 @@ const MathOutput: React.FC<MathOutputProps> = (props) => {
               icon={faClipboard}
               className={`${styles.iconInButton}`}
             ></FontAwesomeIcon>
-            Get embeddable link x
+            Get embeddable link
           </Button>
           {embedLink && !didCopy && <Typography> {embedLink} </Typography>}
         </Box>
