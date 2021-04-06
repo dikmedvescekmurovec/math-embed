@@ -44,3 +44,36 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Firefox
+
+1. Run `npm run build`.
+1. Extract the inline script from `index.html` to `static/js/bootstrap.js`.
+3. Replace the contents of `manifest.json` with the following snippet:
+
+```json
+{
+  "name": "Math Embed: From LaTeX to embeddable link",
+  "description": "Make your LaTeX math embeddable for articles, websites -- wherever you want.",
+  "version": "1.0",
+  "manifest_version": 2,
+  "homepage_url": "https://mathembed.online",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Math Embed",
+    "browser_style": true,
+    "default_icon": {
+      "16": "/images/logo16.png",
+      "32": "/images/logo32.png",
+      "48": "/images/logo48.png",
+      "128": "/images/logo128.png"
+    }
+  },
+  "icons": {
+    "16": "/images/logo16.png",
+    "32": "/images/logo32.png",
+    "48": "/images/logo48.png",
+    "128": "/images/logo128.png"
+  }
+}
+```
