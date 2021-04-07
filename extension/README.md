@@ -1,6 +1,8 @@
 # Getting Started with Math Embed Extension
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The functionality is the same as the website. 
+
+It's a React App running as a Chrome extension serving the Math Embed functionality.
 
 ## Available Scripts
 
