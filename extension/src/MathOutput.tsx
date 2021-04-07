@@ -41,7 +41,7 @@ const useStyles = makeStyles({
     },
   },
   iconInButton: {
-    paddingRight: 16,
+    marginRight: 16,
     fontSize: 16,
   },
 });
@@ -107,9 +107,9 @@ const MathOutput: React.FC<MathOutputProps> = (props) => {
           >
             <FontAwesomeIcon
               icon={faClipboard}
-              className={`${styles.iconInButton}`}
+              className={styles.iconInButton}
             ></FontAwesomeIcon>
-            Get embeddable link
+            <span>Get embeddable link</span>
           </Button>
           {embedLink && !didCopy && <Typography> {embedLink} </Typography>}
         </Box>
