@@ -1,7 +1,7 @@
 {
   "name": "Math Embed: From LaTeX to embeddable link",
   "description": "Make your LaTeX math embeddable for articles, websites -- wherever you want.",
-  "version": "1.0",
+  "version": "1.0.1",
   "manifest_version": 3,
   "action": {
     "default_popup": "index.html"
