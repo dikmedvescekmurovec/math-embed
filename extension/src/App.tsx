@@ -1,6 +1,5 @@
 import { Box, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { useEffect, useState } from 'react';
-import './App.css';
 import initFirebase from './firebase';
 import Header from './Header';
 import MathInput from './MathInput';
