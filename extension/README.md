@@ -28,3 +28,14 @@ Builds the extension for Google Chrome.
 ### `npm run build:firefox`
 
 Builds the extension for Firefox.
+
+## Webpack configuration
+
+Open `node_modules\react-scripts\config\webpack.config.js` and find the `optimization` object. Switch the `minimize` property to `false`.
+
+---
+**Important**
+
+This process has to be made manually each time you run `npm install`.
+
+---
