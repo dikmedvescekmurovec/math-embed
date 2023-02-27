@@ -1,4 +1,8 @@
-# https://www.robotstxt.org/robotstxt.html
-User-agent: *
+User-agent: Googlebot
 Disallow: /embed/
 Disallow: /oembed
+
+User-agent: *
+Allow: /
+
+Sitemap: https://mathembed.online/sitemap.xml
